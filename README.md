@@ -1,54 +1,56 @@
-#🛡️ Sentinel-AI
-Agentic Observability for High-Scale Data Pipelines
-Sentinel-AI is a predictive data reliability engine built to handle the complexities of modern CDPs. Instead of just alerting when a pipeline breaks, Sentinel-AI uses RAG (Retrieval-Augmented Generation) to analyze historical failures and provide instant, actionable Root Cause Analysis (RCA).
+# 🛡️ Sentinel-AI: Predictive Data Observability
 
-🎯 The Mission
-At a company like PostHog, data ingestion is the product. Every failed BigQuery job or ClickHouse exception translates to lost customer insights. Sentinel-AI bridges this gap by turning "silent failures" into "solved tickets."
+**Sentinel-AI** is an agentic observability engine designed to bridge the gap between reactive error logging and proactive resolution. Built with the **PostHog stack** in mind, it uses LLMs to predict and fix pipeline failures before they impact downstream analytics.
 
-✨ Key Features
-Semantic RCA: Uses Gemini-1.5-Flash to reason over complex error logs.
+---
 
-Institutional Memory: Powered by ChromaDB, it remembers past incident resolutions so the team never solves the same bug twice.
+## 🚀 The Core Mission
+In high-scale environments (like PostHog’s ClickHouse/BigQuery pipelines), traditional monitoring tells you *when* a pipeline is dead. **Sentinel-AI** tells you *why* it's dying and provides a pragmatic fix based on historical memory.
 
-Low-Latency Insight: Optimized for speed to match the "bias for action" required in high-growth environments.
+### Key Value Props:
+* **Contextual RCA:** Moves beyond simple regex patterns to understand the "reasoning" behind a failure.
+* **Retrievable Memory:** Uses RAG to "remember" how previous outages were fixed.
+* **Actionable Fixes:** Generates code snippets (SQL/Python) for immediate remediation.
 
-Scalable Stack: Built with the latest LangChain v0.3 ecosystem.
+---
 
-🛠️ Technical Architecture
-Sentinel-AI operates as a closed-loop system:
+## 🛠️ The "Cracked" Tech Stack
+* **Intelligence:** `Gemini-1.5-Flash` via `langchain-google-genai`
+* **Vector Memory:** `ChromaDB` for persistent incident embeddings
+* **Framework:** `LangChain` (Runnables & Prompt Templates)
+* **Interface:** `Streamlit` for a real-time developer dashboard
 
-Ingest: Collects error logs from data warehouses (BigQuery/ClickHouse).
 
-Embed: Converts logs into high-dimensional vectors using text-embedding-004.
 
-Retrieve: Queries the vector store for similar historical patterns.
+---
 
-Resolve: An LLM agent synthesizes the current error and historical context into a fix.
+## 🏗️ Architecture & Logic
+Sentinel-AI operates as a **RAG-based agent**:
+1.  **Ingestion:** Polls incoming error logs (simulated via UI).
+2.  **Embedding:** Errors are converted into vectors using `models/embedding-001`.
+3.  **Retrieval:** The agent queries **ChromaDB** for similar historical "fingerprints."
+4.  **Reasoning:** Gemini-1.5-Flash synthesizes the new error with retrieved context to output a Root Cause Analysis (RCA).
 
-🚀 Quick Start
-1. Prerequisites
-Python 3.10+
+---
 
-Google AI Studio API Key (Gemini)
+## ⚡ Setup & Installation
 
-2. Installation
-Bash
-git clone https://github.com/Netrass/sentinal-ai.git
-cd sentinal-ai
-pip install -r requirements.txt
-3. Environment Setup
-Create a .env file in the root directory:
+1. **Clone & Install:**
+   ```bash
+   git clone [https://github.com/Netrass/sentinal-ai.git](https://github.com/Netrass/sentinal-ai.git)
+   cd sentinal-ai
+   pip install -r requirements.txt
 
-Plaintext
-GOOGLE_API_KEY=your_api_key_here
-4. Run the Dashboard
-Bash
-python -m streamlit run app.py
-👨‍💻 Built for PostHog
-This project was built to demonstrate:
+2. **Environment Variables:**
+   Create a .env file and add your key:
+   GOOGLE_API_KEY= 'your_key_here'
 
-Product Thinking: Solving the "Mean Time to Recovery" (MTTR) problem.
+3. **Run the Dashboard:**
+   python -m streamlit run app.py
 
-Technical Speed: Moving from concept to functional MVP in hours.
+4. **Roadmap**
+   [ ] Integration with ClickHouse system logs.
 
-Modern AI Stack: Practical application of Vector DBs and LLM orchestration.
+   [ ] Slack/Discord alerting for autonomous fixes.
+
+   [ ] Predictive "Disk Full" alerts based on ingestion velocity.
