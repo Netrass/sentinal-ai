@@ -1,4 +1,4 @@
-🛡️ Sentinel-AI
+#🛡️ Sentinel-AI
 Agentic Observability for High-Scale Data Pipelines
 Sentinel-AI is a predictive data reliability engine built to handle the complexities of modern CDPs. Instead of just alerting when a pipeline breaks, Sentinel-AI uses RAG (Retrieval-Augmented Generation) to analyze historical failures and provide instant, actionable Root Cause Analysis (RCA).
 
