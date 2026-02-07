@@ -1,34 +1,54 @@
-> Sentinel-AI: Predictive Observability for PostHog Pipelines
-Sentinel-AI is a proof-of-concept agentic observability engine designed to turn reactive error logs into proactive resolutions. It uses Gemini-1.5-Flash and ChromaDB to provide context-aware Root Cause Analysis (RCA) for high-scale data warehouses like ClickHouse and BigQuery.
+🛡️ Sentinel-AI
+Agentic Observability for High-Scale Data Pipelines
+Sentinel-AI is a predictive data reliability engine built to handle the complexities of modern CDPs. Instead of just alerting when a pipeline breaks, Sentinel-AI uses RAG (Retrieval-Augmented Generation) to analyze historical failures and provide instant, actionable Root Cause Analysis (RCA).
 
-> Why this exists
-In a product-led company like PostHog, data ingestion is the lifeblood. When a pipeline fails, every minute of downtime is a gap in customer analytics. Sentinel-AI bridges the gap between a "403 Forbidden" error and a fix by:
+🎯 The Mission
+At a company like PostHog, data ingestion is the product. Every failed BigQuery job or ClickHouse exception translates to lost customer insights. Sentinel-AI bridges this gap by turning "silent failures" into "solved tickets."
 
-Retrieving historical incident data via Vector Search.
+✨ Key Features
+Semantic RCA: Uses Gemini-1.5-Flash to reason over complex error logs.
 
-Reasoning over the specific error context using LLMs.
+Institutional Memory: Powered by ChromaDB, it remembers past incident resolutions so the team never solves the same bug twice.
 
-Recommending pragmatic, code-ready fixes for engineers.
+Low-Latency Insight: Optimized for speed to match the "bias for action" required in high-growth environments.
 
-> The "Cracked" Stack
-LLM: Gemini-1.5-Flash (via langchain-google-genai).
+Scalable Stack: Built with the latest LangChain v0.3 ecosystem.
 
-Vector Database: ChromaDB for persistent RAG memory.
+🛠️ Technical Architecture
+Sentinel-AI operates as a closed-loop system:
 
-Backend: Python 3.13 + langchain.
+Ingest: Collects error logs from data warehouses (BigQuery/ClickHouse).
 
-Frontend: Streamlit for an autonomous developer dashboard.
+Embed: Converts logs into high-dimensional vectors using text-embedding-004.
 
-> Key Features
-Agentic RCA: Moves beyond pattern matching to semantic understanding of error logs.
+Retrieve: Queries the vector store for similar historical patterns.
 
-Persistent Learning: An "Inject Memory" feature that allows teams to train the agent on their specific infra quirks (e.g., ClickHouse disk pressure or BigQuery schema drift).
+Resolve: An LLM agent synthesizes the current error and historical context into a fix.
 
-Async-First: Designed to fit into PostHog's "Small Team" workflow—automating the repetitive parts of the Support Hero role.
+🚀 Quick Start
+1. Prerequisites
+Python 3.10+
 
-> Quick Start
-Clone the repo: git clone https://github.com/YOUR_USERNAME/sentinel-ai.git
+Google AI Studio API Key (Gemini)
 
-Install deps: pip install -r requirements.txt
+2. Installation
+Bash
+git clone https://github.com/Netrass/sentinal-ai.git
+cd sentinal-ai
+pip install -r requirements.txt
+3. Environment Setup
+Create a .env file in the root directory:
 
-Run it: python -m streamlit run app.py
+Plaintext
+GOOGLE_API_KEY=your_api_key_here
+4. Run the Dashboard
+Bash
+python -m streamlit run app.py
+👨‍💻 Built for PostHog
+This project was built to demonstrate:
+
+Product Thinking: Solving the "Mean Time to Recovery" (MTTR) problem.
+
+Technical Speed: Moving from concept to functional MVP in hours.
+
+Modern AI Stack: Practical application of Vector DBs and LLM orchestration.
